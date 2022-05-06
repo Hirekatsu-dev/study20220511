@@ -1,0 +1,19 @@
+version: "3"
+services:
+  rust:
+    build: ./rust
+    volumes:
+      - ./rust:/study
+    depends_on:
+      - db
+  db:
+    image: postgres
+    volumes:
+      - psql_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=pass
+    ports:
+    - 5432:5432
+volumes:
+  psql_data:
